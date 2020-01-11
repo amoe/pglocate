@@ -21,8 +21,8 @@ conn = psycopg2.connect(
 )
 
 NAMED_CURSOR_ID = 'main'
-cur = conn.cursor(NAMED_CURSOR_ID, itersize=1)
-
+cur = conn.cursor(NAMED_CURSOR_ID)
+cur.itersize = 1
 
 
 QUERY_TEMPLATE = "SELECT filename FROM files WHERE filename ILIKE '%{}%'"

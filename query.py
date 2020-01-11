@@ -22,7 +22,6 @@ conn = psycopg2.connect(
 
 NAMED_CURSOR_ID = 'main'
 cur = conn.cursor(NAMED_CURSOR_ID)
-cur.itersize = 1
 
 
 QUERY_TEMPLATE = "SELECT filename FROM files WHERE filename ILIKE '%{}%'"
@@ -30,11 +29,7 @@ real_query = QUERY_TEMPLATE.format(search_substring)
 
 cur.execute(real_query)
 
-# result = cur.fetchall()
+result = cur.fetchall()
 
-# for f in result:
-#     print(f[0])
-
-for record in cur:
-    print(record)
-
+for f in result:
+    print(f[0])

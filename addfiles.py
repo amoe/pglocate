@@ -4,6 +4,7 @@ import psycopg2
 import psycopg2.extras
 import sys
 import os
+import configparser
 
 # No primary key as we do not want a btree index to be created.
 

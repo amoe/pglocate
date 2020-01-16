@@ -5,6 +5,9 @@ import psycopg2.extras
 import sys
 import os
 import configparser
+import argparse
+
+
 
 # No primary key as we do not want a btree index to be created.
 
@@ -39,9 +42,13 @@ INSERT INTO files (filename) VALUES %s
 interval = 1000
 
 class PathsInserter:
-    def __init__(self):
+    def __init__(self, args):
         self.insert_buffer = []
         self.counter = 0
+
+        parser = argparse.ArgumentParser()
+        parser.add_argument('-v', dest='verbose', default=False)
+        self.options = parser.parse_args()
 
     def run(self, root):
         for root, dirs, files in os.walk(root):
@@ -52,7 +59,9 @@ class PathsInserter:
 
                 if self.counter % interval == 0:
                     self.flush_buffer()
-                    print(self.counter)
+                    
+                    if self.options.verbose:
+                        print(self.counter)
 
         self.flush_buffer()
 
@@ -64,5 +73,5 @@ class PathsInserter:
         self.insert_buffer = []
 
 
-obj = PathsInserter()
+obj = PathsInserter(sys.argv[1:])
 obj.run(DEFAULT_ROOT)

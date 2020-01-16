@@ -7,8 +7,6 @@ import os
 import configparser
 import argparse
 
-
-
 # No primary key as we do not want a btree index to be created.
 
 DDL = """

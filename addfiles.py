@@ -47,7 +47,7 @@ class PathsInserter:
         self.counter = 0
 
         parser = argparse.ArgumentParser()
-        parser.add_argument('-v', dest='verbose', default=False)
+        parser.add_argument('-v', dest='verbose', action='store_true')
         self.options = parser.parse_args()
 
     def run(self, root):

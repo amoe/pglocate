@@ -1,5 +1,11 @@
 # pglocate
 
+It provides a faster version of `locate`.
+
+## Requirements
+
+psycopg2 module: `python3-psycopg2`
+
 Install using `make install`.
 
 Config file is searched for at `/usr/local/etc/pglocate.cf`.
@@ -14,7 +20,8 @@ db_password = somepassword
 db_database = files
 ```
 
-Run the DDL:
+Run the DDL (as the same user specified in this file, otherwise the table will
+get the wrong ownership).
 
 ```
 CREATE TABLE files (filename TEXT NOT NULL)

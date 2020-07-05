@@ -39,6 +39,9 @@ INSERT INTO files (filename) VALUES %s
 
 interval = 1000
 
+def force_enc(x):
+    return x.encode('utf-8', 'surrogateescape').decode('utf-8')
+
 class PathsInserter:
     def __init__(self, args):
         self.insert_buffer = []
@@ -52,6 +55,12 @@ class PathsInserter:
         for root, dirs, files in os.walk(root):
             for file_ in files:
                 full_path = os.path.join(root, file_)
+
+                try:
+                    x = full_path.encode('utf-8')
+                except UnicodeEncodeError as e:
+                    raise Exception('unable to encode path', force_enc(x))
+
                 self.insert_buffer.append((full_path,))
                 self.counter += 1
 

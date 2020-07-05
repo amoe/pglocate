@@ -1,5 +1,7 @@
 # pglocate
 
+Install using `make install`.
+
 Config file is searched for at `/usr/local/etc/pglocate.cf`.
 
 It looks as such:
@@ -11,6 +13,13 @@ db_username = file_indexer
 db_password = somepassword
 db_database = files
 ```
+
+Run the DDL:
+
+```
+CREATE TABLE files (filename TEXT NOT NULL)
+```
+
 
 You need to create the appropriate index on the database after creating it
 yourself.

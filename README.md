@@ -42,3 +42,9 @@ files=# \d files
 Indexes:
     "filename_trgm_idx" gin (filename gin_trgm_ops)
 ```
+
+## Caveats
+
+This program assumes that all filenames can be decoded as UTF-8.  Use a separate
+program to check your filesystem for valid filenames (`check_filenames.py` from
+scriptpool).

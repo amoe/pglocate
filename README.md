@@ -1,6 +1,13 @@
 # pglocate
 
-It provides a faster version of `locate`.
+It provides a faster version of `locate` that uses PostgreSQL's trigram index
+for substring searching.  On low-CPU servers this can be significantly faster
+than the standard 'locate' tool.  It should be faster in all cases, but whether
+the absolute difference is significant depends on your particular use cases.
+I believe that the difference is CPU-bound rather than any other resource, and
+that it's not parallelized in the case of either pglocate or regular locate.
+On a big modern server it won't make much difference, on some laptop or
+low-power RPi type affair it might make a big difference.
 
 ## Requirements
 

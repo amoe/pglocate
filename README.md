@@ -1,5 +1,10 @@
 # pglocate
 
+**Note**: I am no longer using this program.  I have switched to
+[plocate](https://plocate.sesse.net/) which does much the same thing, only
+without using PostgreSQL tables for an index.  It's available in your local
+Debian repository.
+
 It provides a faster version of `locate` that uses PostgreSQL's trigram index
 for substring searching.  On low-CPU servers this can be significantly faster
 than the standard 'locate' tool.  It should be faster in all cases, but whether
